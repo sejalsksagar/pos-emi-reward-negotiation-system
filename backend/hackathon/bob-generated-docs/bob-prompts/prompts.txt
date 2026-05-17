@@ -1,0 +1,146 @@
+# Prompt 1 — Explain architecture
+
+Analyze this repository and explain:
+
+1. High-level architecture
+2. Kafka producers and consumers
+3. CQRS boundaries
+4. MongoDB vs PostgreSQL responsibilities
+5. Transaction lifecycle
+6. Failure handling
+7. DLQ behavior
+8. Saga-like workflows
+
+Create onboarding documentation for a backend engineer joining the project.
+
+
+# Prompt 2 — Trace transaction
+
+Trace what happens when a POS transaction above threshold is created.
+
+Explain:
+
+Request
+→ Validation
+→ Mongo write
+→ Kafka publish
+→ Consumer
+→ Rule engine
+→ Offer generation
+→ User selection
+→ PostgreSQL persistence
+→ Timeout cancellation
+
+Include failure scenarios.
+
+
+# Prompt 3 — Identify risks
+
+Review this repository and identify:
+
+- Event ordering risks
+- Kafka retry concerns
+- DLQ gaps
+- Race conditions
+- Timeout issues
+- Consistency problems
+- Data duplication risks
+
+Rank by severity.
+
+
+# Prompt 4 - Testing/ QA documentation
+
+Analyze this repository and create a complete backend testing guide for the POS EMI & Reward Negotiation System.
+
+Context:
+The system uses Kafka, CQRS, MongoDB, PostgreSQL, Drools, Saga-like timeout handling, and DLQ mechanisms.
+
+Sample transaction payload:
+
+{
+  "userId": "U004505",
+  "amount": 250000
+}
+
+Generate:
+
+1. Environment setup steps
+   - Required services to start (Kafka, DBs, application) 
+	docker-compose start command
+	mongod start command
+   - Configurations/env variables
+   - Kafka topics required
+   - mvn spring-boot:run -Dspring-boot.run.profiles=local
+   - http://localhost:8080/swagger-ui.html
+
+2. End-to-end testing flow
+   - API sequence 
+   - Expected state changes
+   - Kafka events
+   - Database updates
+
+3. Test scenarios covering:
+
+Happy paths:
+- High amount transaction → EMI offers generated
+- Reward offer generation
+- Offer selection → transaction completion
+
+Edge cases:
+- Amount below threshold
+- Invalid userId
+- Missing payload fields
+- Duplicate requests
+- Unsupported merchant/category
+- No eligible offers
+
+Failure scenarios:
+- Kafka unavailable
+- Consumer failure
+- Drools rule failure
+- DB failure
+- Timeout expiry
+- DLQ handling
+- Retry behavior
+
+Persistence checks:
+- Mongo intermediate state validation
+- PostgreSQL final state validation
+
+4. For each scenario provide:
+
+- API request
+- Expected response
+- Kafka expectation
+- MongoDB state
+- PostgreSQL state
+- Logs to verify
+- Success criteria
+
+Create output as a structured QA/testing document under bob-generated-docs folder
+
+
+# Prompt 4 — Generate tests
+
+Generate JUnit + Mockito tests for services handling:
+
+- Kafka publishing
+- Transaction state changes
+- Offer generation
+- Timeout cancellation
+- Rule execution
+
+Include edge cases and failure scenarios.
+
+
+# Prompt 5 — Distributed systems review
+
+Review whether the current implementation correctly follows:
+
+- CQRS principles
+- Event-driven architecture
+- Saga patterns
+- Fault tolerance practices
+
+Suggest improvements.
