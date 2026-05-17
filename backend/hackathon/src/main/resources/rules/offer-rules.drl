@@ -1,0 +1,52 @@
+package rules;
+
+import com.pos.entity.Offer;
+import com.pos.service.RuleInput;
+
+rule "High Amount EMI"
+when
+    $input : RuleInput()
+    eval($input.getAmount() > 100000)
+then
+    $input.addOffer(new Offer(
+        java.util.UUID.randomUUID().toString(),
+        "EMI",
+        "EMI available for high-value transaction"
+    ));
+end
+
+rule "Good Credit Score"
+when
+    $input : RuleInput()
+    eval($input.getCreditScore() > 700)
+then
+    $input.addOffer(new Offer(
+        java.util.UUID.randomUUID().toString(),
+        "EMI",
+        "No-cost EMI (high credit score)"
+    ));
+end
+
+rule "Electronics Cashback"
+when
+    $input : RuleInput()
+    eval($input.getMerchantCategory().equals("electronics"))
+then
+    $input.addOffer(new Offer(
+        java.util.UUID.randomUUID().toString(),
+        "CASHBACK",
+        "10% cashback on electronics"
+    ));
+end
+
+rule "High Reward Points"
+when
+    $input : RuleInput()
+    eval($input.getRewardPoints() > 1000)
+then
+    $input.addOffer(new Offer(
+        java.util.UUID.randomUUID().toString(),
+        "REWARD",
+        "Redeem reward points"
+    ));
+end

@@ -8,8 +8,8 @@
 		<version>4.0.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.buk</groupId>
-	<artifactId>hackathon</artifactId>
+	<groupId>com.pos</groupId>
+	<artifactId>pos</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name/>
 	<description/>
@@ -85,6 +85,56 @@
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
+		
+		<!-- Drools -->
+		<dependency>
+		    <groupId>org.drools</groupId>
+		    <artifactId>drools-core</artifactId>
+		    <version>8.44.0.Final</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.drools</groupId>
+		    <artifactId>drools-compiler</artifactId>
+		    <version>8.44.0.Final</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.kie</groupId>
+		    <artifactId>kie-api</artifactId>
+		    <version>8.44.0.Final</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.drools</groupId>
+		    <artifactId>drools-xml-support</artifactId>
+		    <version>8.44.0.Final</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.drools</groupId>
+		    <artifactId>drools-mvel</artifactId>
+		    <version>8.44.0.Final</version>
+		</dependency>
+		
+		<!-- Swagger UI -->
+		<dependency>
+		    <groupId>org.springdoc</groupId>
+		    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+		    <version>2.5.0</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.hibernate.validator</groupId>
+		    <artifactId>hibernate-validator</artifactId>
+		</dependency>
+		
+		<dependency>
+		    <groupId>io.github.cdimascio</groupId>
+		    <artifactId>dotenv-java</artifactId>
+		    <version>3.0.0</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
