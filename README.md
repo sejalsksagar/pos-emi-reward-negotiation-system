@@ -984,25 +984,6 @@ http://localhost:8080/swagger-ui.html
 
 ---
 
-### ROI Calculation
-
-**Traditional Development**:
-- Onboarding: 3 weeks × $150/hour × 40 hours = **$18,000**
-- Testing: 4 days × $150/hour × 8 hours = **$4,800**
-- Documentation: 3 days × $150/hour × 8 hours = **$3,600**
-- Bug fixes (production): 2 weeks × $150/hour × 40 hours = **$12,000**
-- **Total**: **$38,400**
-
-**With IBM Bob**:
-- Onboarding: 3 days × $150/hour × 8 hours = **$3,600**
-- Testing: 2 hours × $150/hour = **$300**
-- Documentation: 2 hours × $150/hour = **$300**
-- Bug fixes: Prevented = **$0**
-- **Total**: **$4,200**
-
-**Savings**: **$34,200 per project (89% cost reduction)**
-
----
 
 ## 🔮 Future Improvements
 
