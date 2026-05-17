@@ -6,7 +6,6 @@
 [![MongoDB](https://img.shields.io/badge/MongoDB-CQRS%20Write-green.svg)](https://www.mongodb.com/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-CQRS%20Read-blue.svg)](https://www.postgresql.org/)
 [![Drools](https://img.shields.io/badge/Drools-8.44.0-red.svg)](https://www.drools.org/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 > **Hackathon Submission**: Using IBM Bob as an AI development partner to understand, test, document, and maintain a complex event-driven financial backend system.
 
@@ -262,11 +261,12 @@ sequenceDiagram
     API->>MongoDB: Delete Record
     API-->>Client: Success
 
-    Note over MongoDB,PostgreSQL: Timeout Scenario
-    loop Every 10 seconds
-        Note->>MongoDB: Find stale (>60s)
-        Note->>PostgreSQL: Save (CANCELLED)
-        Note->>MongoDB: Delete
+    Note over MongoDB,PostgreSQL: Timeout Scenario (Scheduler runs every 10s)
+    
+    rect rgb(255, 240, 240)
+        Note right of MongoDB: Scheduler finds stale transactions (>60s)
+        MongoDB->>PostgreSQL: Save as CANCELLED
+        MongoDB->>MongoDB: Delete stale records
     end
 ```
 
@@ -703,19 +703,6 @@ mvn spring-boot:run
 http://localhost:8080/swagger-ui.html
 ```
 
-### 6. Verify Setup
-
-```bash
-# Check MongoDB
-mongosh --eval "db.adminCommand('ping')"
-
-# Check PostgreSQL
-psql -h localhost -U postgres -d testdb -c "SELECT 1"
-
-# Check Kafka
-docker exec -it kafka kafka-topics --list --bootstrap-server localhost:9092
-```
-
 ---
 
 ## 📡 API Endpoints
@@ -1095,12 +1082,6 @@ By using IBM Bob as an AI development partner, teams can:
 ## 👥 Team
 
 Built for the IBM Hackathon 2026
-
----
-
-## 📄 License
-
-MIT License — See [LICENSE](LICENSE) for details
 
 ---
 
